@@ -17,10 +17,11 @@ public class moveCharacter : MonoBehaviour
 
     public float distanceToGirl, distanceToDog, distanceToBoyfriend;
 
+    private Rigidbody2D rb;
 
     void Start()
     {
-        
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -53,7 +54,15 @@ public class moveCharacter : MonoBehaviour
         if (distanceToBoyfriend> minDistance && distanceToGirl > minDistance*2 && distanceToDog> minDistance) detection.healthPerSecond = -10;
 
 
-
-        transform.position += new Vector3 (Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed, 0)*Time.deltaTime;
+        movement();
+        
     }
+
+
+    void movement() {
+        //rb.AddForce(new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed, 0) * Time.deltaTime);
+        rb.velocity = (new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed));
+    }
+
+
 }
