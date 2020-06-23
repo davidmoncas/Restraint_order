@@ -6,19 +6,14 @@ using TMPro;
 public class collectible_object : MonoBehaviour
 {
 
-    Transform player;
     public string objectName;
-    public TextMeshPro bottomText;
+    public Sprite iconInventory;
+    public Vector2 pos;
+    public string description;
 
-    void Start()
+    private void Awake()
     {
-        player = FindObjectOfType<moveCharacter>().transform;
-        
+        pos = transform.position;
     }
 
-
-    void Update()
-    {
-        if (Vector2.Distance(player.position, transform.position)<1) { print("esta cerca " + objectName); }
-    }
 }
