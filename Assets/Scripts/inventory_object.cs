@@ -1,24 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; // Required when using Event data.
 
 
-public class inventory_object :MonoBehaviour, IPointerDownHandler
+public class inventory_object 
 {
     public string objectName;
     public string description;
-    private Inventory inventory;
+    public Sprite icon;
 
-
-    private void Start()
-    {
-        inventory = FindObjectOfType<Inventory>();
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        inventory.selectObject(this);
+    public inventory_object(string objectName, string description, Sprite icon) {
+        this.objectName = objectName;
+        this.description = description;
+        this.icon = icon;
     }
 
 }
