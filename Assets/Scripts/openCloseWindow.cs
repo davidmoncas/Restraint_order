@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class inventory : MonoBehaviour
+public class openCloseWindow : MonoBehaviour
 {
     public GameObject inventoryContainer;
-    
-    public void closeInventory() {
+
+    public void closeInventory()
+    {
         inventoryContainer.SetActive(false);
     }
 
-    public void openInventory() {
+    public void openInventory()
+    {
         inventoryContainer.SetActive(true);
     }
-
-
-
 }
