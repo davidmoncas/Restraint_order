@@ -7,34 +7,48 @@ public class distance_manager : MonoBehaviour
 
     public int numberNPCS;
 
-    public Transform[] NPCS;
+    public Collider2D[] NPCS;
     public float[] distances;   //radio of sight of the npc
+    public GameObject[] eyes;
 
     public Transform player;
-    private int maxDist=20;
     public LayerMask ignoreLayer;
+    private Healthbar hb;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hb = GameObject.FindObjectOfType<Healthbar>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        foreach (Transform npc in NPCS)
+        for (int i=0;i<NPCS.Length;i++)
         {
+            Vector2 dir = NPCS[i].bounds.center - player.position;
+            Debug.DrawLine(player.position, NPCS[i].bounds.center);
 
-            Vector2 dir = npc.position - player.position;
-
-            RaycastHit2D hit = Physics2D.Raycast(player.position, dir , maxDist, ~ignoreLayer);
+            RaycastHit2D hit = Physics2D.Raycast(player.position, dir.normalized , distances[i], ~ignoreLayer);
             if (hit.collider != null)
             {
-               // print(hit.collider);
-            }
+                if (hit.collider.gameObject.CompareTag("NPC"))
+                {
+                    eyes[i].SetActive(true);
+                    hb.health += (0.5f / hit.distance);
+                    
+                }
+                else {
+                    eyes[i].SetActive(false);
+                }
 
+              
+            }
+            else
+            {
+                eyes[i].SetActive(false);
+            }
 
 
         }

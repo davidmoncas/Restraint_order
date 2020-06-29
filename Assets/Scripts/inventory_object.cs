@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; // Required when using Event data.
 
-public class inventory_object : MonoBehaviour, IPointerDownHandler
+public class inventory_object : MonoBehaviour
 {
     public string objectName;
-    public string description;
     private Inventory inventory;
 
     private void Start()
@@ -14,9 +12,11 @@ public class inventory_object : MonoBehaviour, IPointerDownHandler
         inventory = FindObjectOfType<Inventory>();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown()
     {
-        inventory.selectObject(this);
+        if(this.objectName!="")
+        inventory.selectObject(this.objectName , this.GetComponent<RectTransform>());
+
     }
 
 }

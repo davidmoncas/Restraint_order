@@ -35,7 +35,7 @@ public class collectible_object_manager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (selectedObject != null) {
 
-                inventory.addObject(selectedObject.objectName, selectedObject.description, selectedObject.iconInventory);
+                inventory.addObject(selectedObject.objectName, selectedObject.iconInventory);
                 collectibles.Remove(selectedObject);
                 Destroy(selectedObject.gameObject);
 

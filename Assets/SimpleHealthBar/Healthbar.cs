@@ -9,6 +9,8 @@ public class Healthbar : MonoBehaviour {
     // Visible health bar ui:
     private Slider healthbarDisplay;
 
+    public Image red_screen;
+
     [Header("Main Variables:")]
     // Health variable: (default range: 0-100)
     [Tooltip("Health variable: (default range: 0-100)")] public float health = 100;
@@ -57,11 +59,13 @@ public class Healthbar : MonoBehaviour {
 
         // Change the starting visible health to be equal to the variable:
         UpdateHealth();
+
     }
 
     // Every frame:
     private void Update()
     {
+        
         healthPercentage = int.Parse((Mathf.Round(maximumHealth * (health / 100f))).ToString());
 
         // If the player's health is below the minimum health, then set it to the minimum health:
@@ -84,6 +88,8 @@ public class Healthbar : MonoBehaviour {
             // Each time the health is changed, update it visibly:
             UpdateHealth();
         }
+        
+        red_screen.color = new Color(255, 0, 0, health/255);
     }
 
     // Set the health bar to display the same health value as the health variable:

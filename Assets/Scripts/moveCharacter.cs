@@ -10,10 +10,14 @@ public class moveCharacter : MonoBehaviour
     Vector2 movement;
     int direction;
     float velocity;
+    SpriteRenderer sr;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        sr = this.GetComponent<SpriteRenderer>();
+        this.GetComponent<Animator>().SetFloat("horizontal", 0);
+        this.GetComponent<Animator>().SetFloat("vertical", 0);
     }
 
     void Update()
@@ -31,11 +35,8 @@ public class moveCharacter : MonoBehaviour
         this.GetComponent<Animator>().SetBool("moving", movement.magnitude > 0);
 
  
-
-
-        Debug.Log(rb.velocity.magnitude);
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
-        
+        sr.sortingOrder = 100-(int)((transform.position.y + 5) * 10);
         
     }
 

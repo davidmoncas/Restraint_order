@@ -8,12 +8,15 @@ public class Inventory : MonoBehaviour
 {
     public GameObject inventoryContainer;
     public GameObject icon_template;
-    public TextMeshProUGUI description;
     public TextMeshProUGUI title_object;
     public GameObject selectionRectangle;
 
+   
+
     public List<GameObject> objects_inventory;
-    private GameObject selectedObject;
+    private string selectedObject;
+
+    public GameObject[] inventorySlots;
 
     private void Start()
     {
@@ -29,18 +32,30 @@ public class Inventory : MonoBehaviour
         inventoryContainer.SetActive(true);
     }
 
-    public void addObject(string objectName, string description, Sprite icon)
+    public void addObject(string objectName, Sprite icon)
     { // add a new object to the list
-        
 
-        GameObject newIcon = Instantiate(icon_template);
-        newIcon.GetComponent<inventory_object>().description = description;
-        newIcon.GetComponent<inventory_object>().objectName = objectName;
-        newIcon.GetComponent<Image>().sprite = icon;
-        newIcon.transform.SetParent(inventoryContainer.transform);
+        int emptySlot=-1;
+        for (int i = 0; i < 3; i++) {
+            print(inventorySlots[i].GetComponent<inventory_object>().objectName);
+            if (inventorySlots[i].GetComponent<inventory_object>().objectName == "") { 
+                emptySlot = i;
+                break;
+            }
+        }
 
-        objects_inventory.Add(newIcon);
-        arrangeObjects();
+
+        inventorySlots[emptySlot].AddComponent<Image>();
+        inventorySlots[emptySlot].GetComponent<Image>().sprite = icon;
+        inventorySlots[emptySlot].GetComponent<inventory_object>().objectName = objectName;
+
+        //GameObject newIcon = Instantiate(icon_template);
+        //newIcon.GetComponent<inventory_object>().objectName = objectName;
+        //newIcon.GetComponent<Image>().sprite = icon;
+        //newIcon.transform.SetParent(inventoryContainer.transform);
+
+        //objects_inventory.Add(newIcon);
+        //arrangeObjects();
     }
 
     public void arrangeObjects()
@@ -56,13 +71,12 @@ public class Inventory : MonoBehaviour
     }
 
 
-        public void selectObject(inventory_object obj)
+        public void selectObject(string objectName , RectTransform pos)
     {
         if (!selectionRectangle.activeSelf) selectionRectangle.SetActive(true);
-        selectionRectangle.GetComponent<RectTransform>().anchoredPosition = obj.gameObject.GetComponent<RectTransform>().anchoredPosition;
-        description.text = obj.description;
-        title_object.text = obj.objectName;
-        selectedObject = obj.gameObject;
+        selectionRectangle.GetComponent<RectTransform>().anchoredPosition = pos.anchoredPosition;
+        title_object.text = objectName;
+        selectedObject = objectName;
     }
 
 }
