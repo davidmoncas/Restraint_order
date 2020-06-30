@@ -45,6 +45,7 @@ public class Healthbar : MonoBehaviour {
     public Color mediumHealthColor = new Color(0.9450285f, 1f, 0.4481132f);
     public Color lowHealthColor = new Color(1f, 0.259434f, 0.259434f);
 
+    private bool gameOver=false;
     private void Start()
     {
         // If the healthbar hasn't already been assigned, then automatically assign it.
@@ -65,6 +66,7 @@ public class Healthbar : MonoBehaviour {
     // Every frame:
     private void Update()
     {
+        if (!gameState.playing) return;
         
         healthPercentage = int.Parse((Mathf.Round(maximumHealth * (health / 100f))).ToString());
 
@@ -90,6 +92,13 @@ public class Healthbar : MonoBehaviour {
         }
         
         red_screen.color = new Color(255, 0, 0, health/255);
+
+        if (health >= 100 && !gameOver) {
+            gameOver = true;
+            FindObjectOfType<gameState>().gameOver();
+
+        }
+
     }
 
     // Set the health bar to display the same health value as the health variable:

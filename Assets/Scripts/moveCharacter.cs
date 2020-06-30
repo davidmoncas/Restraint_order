@@ -23,6 +23,8 @@ public class moveCharacter : MonoBehaviour
     void Update()
     {
 
+        if (!gameState.playing) return;
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 

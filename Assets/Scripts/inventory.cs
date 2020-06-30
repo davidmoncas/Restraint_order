@@ -13,14 +13,13 @@ public class Inventory : MonoBehaviour
 
    
 
-    public List<GameObject> objects_inventory;
     private string selectedObject;
 
     public GameObject[] inventorySlots;
 
     private void Start()
     {
-        objects_inventory = new List<GameObject>();
+        
     }
 
 
@@ -49,25 +48,6 @@ public class Inventory : MonoBehaviour
         inventorySlots[emptySlot].GetComponent<Image>().sprite = icon;
         inventorySlots[emptySlot].GetComponent<inventory_object>().objectName = objectName;
 
-        //GameObject newIcon = Instantiate(icon_template);
-        //newIcon.GetComponent<inventory_object>().objectName = objectName;
-        //newIcon.GetComponent<Image>().sprite = icon;
-        //newIcon.transform.SetParent(inventoryContainer.transform);
-
-        //objects_inventory.Add(newIcon);
-        //arrangeObjects();
-    }
-
-    public void arrangeObjects()
-    {
-
-        float posX = -32; //position of the first element in the inventory
-        for (int i = 0; i < objects_inventory.Count; i++)
-        { // show all the objects in the inventory
-
-            objects_inventory[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(posX + i * 20, 8.3f, 0);
-            objects_inventory[i].GetComponent<RectTransform>().localScale = new Vector3(0.14f, 0.14f, 0.14f);
-        }
     }
 
 

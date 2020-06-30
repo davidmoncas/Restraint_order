@@ -9,6 +9,7 @@ public class collectible_object_manager : MonoBehaviour
     private List<collectible_object> collectibles;
     private Transform player;
     public TextMeshProUGUI textBottom;
+    public GameObject textBottomContainer;
     private collectible_object selectedObject;
     private Inventory inventory;
 
@@ -52,11 +53,13 @@ public class collectible_object_manager : MonoBehaviour
 
                 collectible_object coll_prop = collectible.gameObject.GetComponent<collectible_object>();
 
+                textBottomContainer.SetActive(true);
                 textBottom.text = "Grab " + coll_prop.objectName;
                 selectedObject = collectible;
                 return;
             }
         }
+        textBottomContainer.SetActive(false);
         textBottom.text = " ";
         selectedObject = null;
 
