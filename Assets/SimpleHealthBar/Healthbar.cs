@@ -10,6 +10,8 @@ public class Healthbar : MonoBehaviour {
     private Slider healthbarDisplay;
 
     public Image red_screen;
+    public GameObject cheatMode_UI;
+    public bool cheatMode = false;
 
     [Header("Main Variables:")]
     // Health variable: (default range: 0-100)
@@ -94,10 +96,21 @@ public class Healthbar : MonoBehaviour {
         red_screen.color = new Color(255, 0, 0, health/255);
 
         if (health >= 100 && !gameOver) {
-            gameOver = true;
-            FindObjectOfType<gameState>().gameOver();
+            
+            if (cheatMode) health = 99;
+            else {
+                gameOver = true;
+                FindObjectOfType<gameState>().gameOver();
 
+            }
         }
+
+
+        if (Input.GetKeyDown(KeyCode.C)) {
+            cheatMode = !cheatMode;
+            cheatMode_UI.SetActive(cheatMode);
+        }
+
 
     }
 

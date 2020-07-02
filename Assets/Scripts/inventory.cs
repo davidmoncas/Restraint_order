@@ -14,16 +14,21 @@ public class Inventory : MonoBehaviour
 
     public Animator duck , igor , dog;
 
+    private Transform player;
+
     private cameraMovement cm;
 
 
     private GameObject selectedObject;
+    private dialog_manager dm;
 
     public GameObject[] inventorySlots;
 
     private void Start()
     {
         cm = GameObject.FindObjectOfType<cameraMovement>();
+        player = GameObject.FindObjectOfType<moveCharacter>().transform;
+        dm = GameObject.FindObjectOfType<dialog_manager>();
     }
 
 
@@ -59,23 +64,42 @@ public class Inventory : MonoBehaviour
     public void useObject() {
 
         if (selectedObject.GetComponent<inventory_object>().objectName == "Bread crumbs") { // using the bread
-            StartCoroutine(setCameraTarget(duck.transform, 7));
-            igor.SetTrigger("run");
-            duck.SetTrigger("chase");
 
-            restartSlot();
+            if (Vector2.Distance(player.position, duck.transform.position) < 4)
+            {
+                StartCoroutine(setCameraTarget(duck.transform, 7));
+                igor.SetTrigger("run");
+                duck.SetTrigger("chase");
+
+                restartSlot();
+                return;
+            }
+            else {
+                dm.openDialog("Peter", "I don't think that throwing bread crumbs in here is useful...", 0);
+            }
         }
 
 
         if (selectedObject.GetComponent<inventory_object>().objectName == "Bone")   //using the bone
         {
-            StartCoroutine(setCameraTarget(dog.transform, 6));
-            Destroy(dog.GetComponent<Collider2D>());
-            dog.SetTrigger("run");
-            restartSlot();
+
+            if (Vector2.Distance(player.position, dog.transform.position) < 4)
+            {
+                StartCoroutine(setCameraTarget(dog.transform, 6));
+                (dog.GetComponent<Collider2D>()).enabled = false;
+                dog.SetTrigger("run");
+                restartSlot();
+                return;
+            }
+            else {
+                dm.openDialog("Peter", "Throw the bone here? Why?", 0);
+            }
         }
 
-
+        if (selectedObject.GetComponent<inventory_object>().objectName == "Cherries") // using the berries
+        {
+            dm.openDialog("Peter", "hmmm, I wonder if she smells like cherries", 0);
+        }
 
 
     }
