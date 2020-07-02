@@ -15,8 +15,8 @@ public class inventory_object : MonoBehaviour
     public void OnPointerDown()
     {
         if(this.objectName!="")
-        inventory.selectObject(this.objectName , this.GetComponent<RectTransform>());
-
+        inventory.selectObject(this.gameObject , this.GetComponent<RectTransform>());
+        
     }
 
 }

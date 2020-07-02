@@ -23,7 +23,10 @@ public class moveCharacter : MonoBehaviour
     void Update()
     {
 
-        if (!gameState.playing) return;
+        if (!gameState.playing) {
+            this.GetComponent<Animator>().SetBool("moving", false);
+            return; 
+        }
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

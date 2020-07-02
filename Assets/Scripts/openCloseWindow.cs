@@ -9,10 +9,12 @@ public class openCloseWindow : MonoBehaviour
     public void closeInventory()
     {
         inventoryContainer.SetActive(false);
+        gameState.playing = true;
     }
 
     public void openInventory()
     {
         inventoryContainer.SetActive(true);
+        gameState.playing = false;
     }
 }

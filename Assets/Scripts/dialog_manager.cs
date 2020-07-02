@@ -18,7 +18,7 @@ public class dialog_manager : MonoBehaviour
     void Start()
     {
         gameState.playing = false;
-        openDialog("peter", "There's Ella, I realy need to know what is she saying, I need to know everything!", 0);
+        openDialog("peter", "There's Ella, I really need to know what she is saying, I need to know everything!", 0);
     }
 
     void Update()
