@@ -806,6 +806,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1150998834}
   aiDestin: {fileID: 210759627}
   player: {fileID: 1484208974}
+  animator: {fileID: 602769833}
 --- !u!1 &219709652
 GameObject:
   m_ObjectHideFlags: 0
