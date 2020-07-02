@@ -44,7 +44,7 @@ public class distance_manager : MonoBehaviour
             if (!gameState.playing) return;
 
             RaycastHit2D hit = Physics2D.Raycast(player.position, dir.normalized , distances[i], ~ignoreLayer);
-            if (hit.collider != null)
+            if (hit.collider != null && gameState.playing)
             {
                 if (hit.collider.gameObject.CompareTag("NPC"))
                 {
