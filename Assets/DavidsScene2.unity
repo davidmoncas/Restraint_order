@@ -744,7 +744,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 0.8
+  maxSpeed: 1
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -853,7 +853,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Cherries
   iconInventory: {fileID: 21300000, guid: 2db024bdecde1204096e1411b2df042e, type: 3}
-  pos: {x: 0, y: 0}
   description: This one looks volcanic, I wonder how hard it hits someone...
 --- !u!212 &219709655
 SpriteRenderer:
@@ -1749,7 +1748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e34de5e65628b4995153ac2fb38770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1484208974}
+  target: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2114,9 +2113,10 @@ GameObject:
   - component: {fileID: 602769834}
   - component: {fileID: 602769833}
   - component: {fileID: 602769832}
+  - component: {fileID: 602769835}
   m_Layer: 0
   m_Name: Igor (1)
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2222,6 +2222,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &602769835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602769830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22e80bc674e6ee4a92c982d8e0f0bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1484208974}
+  spawnPoint: {fileID: 1150998834}
 --- !u!1 &666713263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2651,9 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 256
+  detected: 0
+  finalScreen: {fileID: 0}
+  radius: 0
 --- !u!1001 &796831828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3015,7 +3032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Bread crumbs
   iconInventory: {fileID: 21300000, guid: 4f7e0ed72ea2106448dde85dd243f50b, type: 3}
-  pos: {x: 0, y: 0}
   description: This one looks volcanic, I wonder how hard it hits someone...
 --- !u!212 &839085652
 SpriteRenderer:
@@ -3487,7 +3503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Bone
   iconInventory: {fileID: 21300000, guid: de84064ff9d9d364598b84f3f0fff2ec, type: 3}
-  pos: {x: 0, y: 0}
   description: This one looks volcanic, I wonder how hard it hits someone...
 --- !u!212 &912957687
 SpriteRenderer:
@@ -6991,6 +7006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBottom: {fileID: 572961194}
   textBottomContainer: {fileID: 248170185}
+  backpack: {fileID: 0}
 --- !u!4 &2055388627
 Transform:
   m_ObjectHideFlags: 0

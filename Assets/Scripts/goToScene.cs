@@ -11,6 +11,7 @@ public class goToScene : MonoBehaviour
     public void openScene()
     {
         SceneManager.LoadScene(scene);
+        Time.timeScale = 1;
     }
 
 

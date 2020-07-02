@@ -17,14 +17,16 @@ public class EnemyGraphics : MonoBehaviour
     void Update()
     {
 
-        print(Vector3.Distance(player.position, transform.position));
+     print(Vector3.Distance(player.position, transform.position));
         if (Vector3.Distance(player.position, transform.position) < 5) aiDestin.target = player;
         else aiDestin.target = spawnPoint;
 
+        if (transform.position == Vector3.zero) animator.Play("idle_right");
 
 
 
-        if (aiPath.desiredVelocity.x >= 0.01f) {
+
+            if (aiPath.desiredVelocity.x >= 0.01f) {
           //  transform.localScale = new Vector3(-1, 1, 1);
             if(!animator.GetCurrentAnimatorStateInfo(0).IsName("walk_left"))
             animator.Play("walk_left");
@@ -53,4 +55,6 @@ public class EnemyGraphics : MonoBehaviour
         }
      */  
     }
+
+ 
 }
