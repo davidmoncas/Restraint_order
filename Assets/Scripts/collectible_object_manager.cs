@@ -15,6 +15,8 @@ public class collectible_object_manager : MonoBehaviour
     private Inventory inventory;
     private dialog_manager dm;
 
+    public AudioSource selectObjectSound;
+
     public Animator backpack;
 
     private List<dialogObject> dialogs;
@@ -52,7 +54,7 @@ public class collectible_object_manager : MonoBehaviour
         // if the player press spacebar near to an object it should grab it (and destroy the gameobject)
         if (Input.GetKeyDown(KeyCode.Space) ) {
             if (selectedObject != null) {
-
+                selectObjectSound.Play();
                 inventory.addObject(selectedObject.objectName, selectedObject.iconInventory);
                 collectibles.Remove(selectedObject);
                 backpack.SetTrigger("grow");

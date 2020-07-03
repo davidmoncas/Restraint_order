@@ -16,6 +16,7 @@ public class distance_manager : MonoBehaviour
     private Healthbar hb;
     private dialog_manager dm;
 
+    public AudioSource detectedMusic , victoryMusic;
 
     private bool seenIgor = false, seenDog = false, seenElla = false;
     public bool detected = false;
@@ -92,6 +93,13 @@ public class distance_manager : MonoBehaviour
             StartCoroutine(endingScene());
         }
 
+
+        if (detected)
+        {
+            if (!detectedMusic.isPlaying) detectedMusic.Play();
+        }
+        else if (detectedMusic.isPlaying) detectedMusic.Stop();
+
     }
 
 
@@ -102,6 +110,7 @@ public class distance_manager : MonoBehaviour
         cm.target = player;
         dm.openDialog("Peter", "Perfect!, I will follow her to the shopping mall", 0);
         yield return new WaitForSeconds(5);
+        victoryMusic.Play();
         finalScreen.SetActive(true);
     }
 }

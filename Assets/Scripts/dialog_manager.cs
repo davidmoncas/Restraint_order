@@ -13,6 +13,7 @@ public class dialog_manager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool runningCoroutine=false;
     private string completeMessage;
+    public AudioSource openDialogSound;
 
 
     void Start()
@@ -44,7 +45,7 @@ public class dialog_manager : MonoBehaviour
     public void openDialog(string character, string message, int portraitNumber) {
 
        gameState.playing = false; //pause the game while showing the dialog
-
+        openDialogSound.Play();
         completeMessage = message;
         dialogContainer.SetActive(true);
         title.text = character;

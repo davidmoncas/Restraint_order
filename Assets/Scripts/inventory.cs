@@ -7,10 +7,11 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     public GameObject inventoryContainer;
-    public GameObject icon_template;
     public TextMeshProUGUI title_object;
     public GameObject selectionRectangle;
     public GameObject inventory;
+
+    public GameObject dialogContainer;
 
     public Animator duck , igor , dog;
 
@@ -62,6 +63,9 @@ public class Inventory : MonoBehaviour
 
 
     public void useObject() {
+
+        if (dialogContainer.activeSelf) return;
+
 
         if (selectedObject.GetComponent<inventory_object>().objectName == "Bread crumbs") { // using the bread
 
